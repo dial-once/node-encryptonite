@@ -4,7 +4,8 @@
   "description": "Data encryption and decryption",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "mocha test",
+    "cover": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- test --recursive --timeout=10000"
   },
   "keywords": [
     "node",
@@ -13,5 +14,14 @@
     "security"
   ],
   "author": "Dial-Once",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.0"
+  }
 }
