@@ -1,0 +1,14 @@
+.git
+node_modules
+coverage
+test
+.env
+.env.tpl
+.sonar
+.gitignore
+.eslintignore
+.eslintrc
+.DS_STORE
+.npmignore
+Makefile
+sonar-project.properties

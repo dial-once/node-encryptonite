@@ -1,0 +1,17 @@
+{
+  "name": "node-security",
+  "version": "1.0.0",
+  "description": "Data encryption and decryption",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "node",
+    "encryption",
+    "decryption",
+    "security"
+  ],
+  "author": "Dial-Once",
+  "license": "ISC"
+}
