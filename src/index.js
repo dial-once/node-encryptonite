@@ -1,9 +1,6 @@
 const crypto = require('crypto');
 const assert = require('assert');
 
-const key = process.env.HASHING_KEY;
-assert(key, 'HASHING_KEY not provided');
-
 const ACTION = {
   ENCRYPT: 'ENCRYPT',
   DECRYPT: 'DECRYPT'
@@ -17,8 +14,8 @@ const ACTION = {
    * @param {string} action - action to perform. Can be either ENCRYPT or DECRYPT
    * @return {Array|string|boolean|object} - encrypted Array of objects or one object / decrypted Array of strings or one string
 */
-function performAction(data, action) {
-  if ([null, undefined].includes(data)) {
+function performAction(data, key, action) {
+  if ([null, undefined].includes(data) || [null, undefined].includes(key)) {
     return data;
   }
 
@@ -69,7 +66,7 @@ module.exports = {
    * @param  {Array|string} data - data to encrypt
    * @return {Array|object}      - Array of objects with encrypted data or one object
    */
-  encrypt: data => performAction(data, ACTION.ENCRYPT),
+  encrypt: (data, key) => performAction(data, key, ACTION.ENCRYPT),
   /**
    * Decrypt Array of objects or one object of hte following structure:
    * {
@@ -80,5 +77,5 @@ module.exports = {
    * @param  {Array|string} hash - encrypted data
    * @return {Array|string}      - Array of decrypted strings or decrypted string
    */
-  decrypt: hash => performAction(hash, ACTION.DECRYPT)
+  decrypt: (hash, key) => performAction(hash, key,ACTION.DECRYPT)
 };

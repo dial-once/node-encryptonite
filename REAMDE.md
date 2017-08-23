@@ -15,7 +15,7 @@ const data = 'Hello World !';
 security.encrypt(data);
 ```
 
-- Decript data
+- Decrypt data
 ```
 const security = require('node-security');
 
