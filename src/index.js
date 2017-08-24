@@ -31,11 +31,10 @@ function performAction(data, key, action) {
         continue; // eslint-disable-line no-continue
       }
 
-      // eslint-disable-next-line no-param-reassign
-      item = typeof item === 'boolean' ? `${item}` : item; // converting boolean to string
+      const itemValue = typeof item === 'boolean' ? `${item}` : item; // converting boolean to string
       const vector = crypto.randomBytes(12);
       const cipher = crypto.createCipheriv('aes-256-gcm', key, vector);
-      const encryptedItem = `${cipher.update(item, 'utf8', 'hex')}${cipher.final('hex')}`;
+      const encryptedItem = `${cipher.update(itemValue, 'utf8', 'hex')}${cipher.final('hex')}`;
       const tag = cipher.getAuthTag();
       result.push({
         content: encryptedItem,
