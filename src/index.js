@@ -17,7 +17,7 @@ const actionEnum = {
    * @param  {Array|string|boolean|object} data - data to encrypt/decrypt.
    * In case of encryption, data can be Array of string or string.
    * In case of decryption, data can be an Array of objects or an object
-   * @param {string} action - action to perform. Can be either ENCRYPT or DECRYPT
+   * @param {enum} action - action to perform. Can be either ENCRYPT or DECRYPT
    * @return {Array|string|boolean|object} - encrypted Array of objects or one object / decrypted Array of strings or one string
 */
 function performAction(data, key, action) {
@@ -69,6 +69,7 @@ module.exports = {
   /**
    * Encrypt Array of strings or string
    * @param  {Array|string} data - data to encrypt
+   * @param  {string} key        - key used for encryption
    * @return {Array|object}      - Array of objects with encrypted data or one object
    */
   encrypt: (data, key) => performAction(data, key, actionEnum.ENCRYPT),
@@ -80,6 +81,7 @@ module.exports = {
    *   tag: {string}      - encryption auth tag
    * }
    * @param  {Array|string} hash - encrypted data
+   * @param  {string} key        - key used for decryption
    * @return {Array|string}      - Array of decrypted strings or decrypted string
    */
   decrypt: (hash, key) => performAction(hash, key,actionEnum.DECRYPT)
