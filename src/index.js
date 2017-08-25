@@ -1,9 +1,15 @@
 const crypto = require('crypto');
 const assert = require('assert');
 
-const ACTION = {
-  ENCRYPT: 'ENCRYPT',
-  DECRYPT: 'DECRYPT'
+
+/**
+ * Enum for two state values.
+ * @readonly
+ * @enum {number}
+ */
+const actionEnum = {
+  ENCRYPT: 0,
+  DECRYPT: 1
 };
 
 /**
@@ -24,7 +30,7 @@ function performAction(data, key, action) {
   const result = [];
 
   for (let item of queue) {
-    if (action === ACTION.ENCRYPT) {
+    if (action === actionEnum.ENCRYPT) {
       // if already encrypted
       if (item.content && item.vector && item.tag) {
         result.push(item);
@@ -41,7 +47,7 @@ function performAction(data, key, action) {
         vector: vector.toString('hex'),
         tag: tag.toString('hex')
       });
-    } else if (action === ACTION.DECRYPT) {
+    } else if (action === actionEnum.DECRYPT) {
       // if was not encrypted
       if (!item.content || !item.vector || !item.tag) {
         result.push(item);
@@ -65,7 +71,7 @@ module.exports = {
    * @param  {Array|string} data - data to encrypt
    * @return {Array|object}      - Array of objects with encrypted data or one object
    */
-  encrypt: (data, key) => performAction(data, key, ACTION.ENCRYPT),
+  encrypt: (data, key) => performAction(data, key, actionEnum.ENCRYPT),
   /**
    * Decrypt Array of objects or one object of hte following structure:
    * {
@@ -76,5 +82,5 @@ module.exports = {
    * @param  {Array|string} hash - encrypted data
    * @return {Array|string}      - Array of decrypted strings or decrypted string
    */
-  decrypt: (hash, key) => performAction(hash, key,ACTION.DECRYPT)
+  decrypt: (hash, key) => performAction(hash, key,actionEnum.DECRYPT)
 };
