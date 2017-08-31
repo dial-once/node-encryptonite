@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-const assert = require('assert');
 
 function string2Boolean(str) {
   return (typeof str === 'boolean' ? `${str}` : str);
@@ -35,7 +34,7 @@ module.exports = {
     const queue = isArray ? [...data] : [data];
     const result = [];
     
-    for (let item of queue) {
+    for (const item of queue) {
       if (item.content && item.vector && item.tag) {
         result.push(item);
         continue; // eslint-disable-line no-continue
