@@ -29,11 +29,11 @@ module.exports = {
     if ([null, undefined].includes(data) || [null, undefined].includes(key)) {
       return data;
     }
-    
+
     const isArray = Array.isArray(data);
     const queue = isArray ? [...data] : [data];
     const result = [];
-    
+
     for (const item of queue) {
       if (item.content && item.vector && item.tag) {
         result.push(item);
@@ -50,7 +50,7 @@ module.exports = {
         tag: tag.toString('hex')
       });
     }
-    
+
     return isArray ? result : result[0];
   },
   /**
@@ -68,12 +68,12 @@ module.exports = {
     if ([null, undefined].includes(data) || [null, undefined].includes(key)) {
       return data;
     }
-    
+
     const isArray = Array.isArray(data);
     const queue = isArray ? [...data] : [data];
     const result = [];
-    
-    for (let item of queue) {
+
+    for (const item of queue) {
       // if was not encrypted
       if (!item.content || !item.vector || !item.tag) {
         result.push(item);
@@ -86,7 +86,7 @@ module.exports = {
       const normalizedValue = boolean2String(decryptedValue);
       result.push(normalizedValue);
     }
-    
+
     return isArray ? result : result[0];
   }
 };

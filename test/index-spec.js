@@ -50,15 +50,15 @@ describe('security', () => {
     const value = 'Dial-Once';
     assert.equal(value, security.decrypt(value, '5a14291bdfb708f81f924807e41e97bf'));
   });
-  
+
   it('should encrypt multiple times the same input into a different output', () => {
     const value = 'Dial-Once';
     const encrypted1 = security.encrypt(value, '5a14291bdfb708f81f924807e41e97bf');
     const encrypted2 = security.encrypt(value, '5a14291bdfb708f81f924807e41e97bf');
-    
+
     const decrypted1 = security.decrypt(encrypted1, '5a14291bdfb708f81f924807e41e97bf');
     const decrypted2 = security.decrypt(encrypted2, '5a14291bdfb708f81f924807e41e97bf');
-    
+
     assert.notEqual(encrypted1, encrypted2);
     assert.equal(decrypted1, decrypted2);
   });
