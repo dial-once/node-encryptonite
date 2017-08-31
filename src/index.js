@@ -18,6 +18,12 @@ module.exports = {
    * @param  {Array|string} data - data to encrypt
    * @param  {string} key        - key used for encryption
    * @return {Array|object}      - Array of objects with encrypted data or one object
+   * Expected object should be
+   * {
+   *   content: {string}, - encrypted content
+   *   vector: {string},  - encryption vector
+   *   tag: {string}      - encryption auth tag
+   * }
    */
   encrypt: (data, key) => {
     // if already encrypted
