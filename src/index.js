@@ -9,6 +9,9 @@ function boolean2String(bool) {
   return (['true', 'false'].includes(bool) ? bool === 'true' : bool);
 }
 
+const bytesToGenerate = 12;
+const vector = crypto.randomBytes(bytesToGenerate);
+
 module.exports = {
   /**
    * Encrypt Array of strings or string
@@ -33,7 +36,6 @@ module.exports = {
       }
 
       const itemValue = string2Boolean(item);
-      const vector = crypto.randomBytes(12);
       const cipher = crypto.createCipheriv('aes-256-gcm', key, vector);
       const encryptedItem = `${cipher.update(itemValue, 'utf8', 'hex')}${cipher.final('hex')}`;
       const tag = cipher.getAuthTag();
@@ -73,7 +75,7 @@ module.exports = {
         continue; // eslint-disable-line no-continue
       }
 
-      const decipher = crypto.createDecipheriv('aes-256-gcm', key, Buffer.from(item.vector, 'hex'));
+      const decipher = crypto.createDecipheriv('aes-256-gcm', key, vector);
       decipher.setAuthTag(Buffer.from(item.tag, 'hex'));
       const decryptedValue = `${decipher.update(item.content, 'hex', 'utf8')}${decipher.final('utf8')}`;
       const normalizedValue = boolean2String(decryptedValue);
