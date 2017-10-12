@@ -23,7 +23,5 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.5.0"
   },
-  "dependencies": {
-    "dotenv": "^4.0.0"
-  }
+  "dependencies": {}
 }

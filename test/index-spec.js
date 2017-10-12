@@ -1,4 +1,3 @@
-require('dotenv').load({ silent: true });
 const assert = require('assert');
 const security = require('../src/index.js');
 
