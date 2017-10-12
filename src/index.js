@@ -8,8 +8,9 @@ function boolean2String(bool) {
   return (['true', 'false'].includes(bool) ? bool === 'true' : bool);
 }
 
-const bytesToGenerate = 12;
-const vector = crypto.randomBytes(bytesToGenerate);
+// 12 per algorithm requirements: https://www.npmjs.com/package/node-aes-256-gcm#encryptkey-iv-plaintext-aad
+const vectorLength = 12;
+
 
 module.exports = {
   /**
@@ -23,7 +24,7 @@ module.exports = {
    *   vector: {string},  - encryption vector
    *   tag: {string}      - encryption auth tag
    * }
-   */
+  */
   encrypt: (data, key) => {
     // if already encrypted
     if ([null, undefined].includes(data) || [null, undefined].includes(key)) {
@@ -40,6 +41,7 @@ module.exports = {
         continue; // eslint-disable-line no-continue
       }
 
+      const vector = crypto.randomBytes(vectorLength);
       const itemValue = string2Boolean(item);
       const cipher = crypto.createCipheriv('aes-256-gcm', key, vector);
       const encryptedItem = `${cipher.update(itemValue, 'utf8', 'hex')}${cipher.final('hex')}`;
@@ -63,7 +65,7 @@ module.exports = {
    * @param  {Array|string} hash - encrypted data
    * @param  {string} key        - key used for decryption
    * @return {Array|string}      - Array of decrypted strings or decrypted string
-   */
+  */
   decrypt: (data, key) => {
     if ([null, undefined].includes(data) || [null, undefined].includes(key)) {
       return data;
@@ -72,15 +74,13 @@ module.exports = {
     const isArray = Array.isArray(data);
     const queue = isArray ? [...data] : [data];
     const result = [];
-
     for (const item of queue) {
       // if was not encrypted
       if (!item.content || !item.vector || !item.tag) {
         result.push(item);
         continue; // eslint-disable-line no-continue
       }
-
-      const decipher = crypto.createDecipheriv('aes-256-gcm', key, vector);
+      const decipher = crypto.createDecipheriv('aes-256-gcm', key, Buffer.from(item.vector, 'hex'));
       decipher.setAuthTag(Buffer.from(item.tag, 'hex'));
       const decryptedValue = `${decipher.update(item.content, 'hex', 'utf8')}${decipher.final('utf8')}`;
       const normalizedValue = boolean2String(decryptedValue);

@@ -1,7 +1,7 @@
 {
-  "name": "node-security",
+  "name": "node-encryption",
   "version": "1.0.0",
-  "description": "Data encryption and decryption",
+  "description": "Data encryption and decryption using aes-256-gcm algorithm",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha test",
@@ -10,8 +10,7 @@
   "keywords": [
     "node",
     "encryption",
-    "decryption",
-    "security"
+    "decryption"
   ],
   "author": "Dial-Once",
   "license": "ISC",
