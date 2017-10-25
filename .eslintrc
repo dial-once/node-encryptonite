@@ -11,6 +11,7 @@
     "max-len": ["error", {"code": 120, "ignoreComments": true, "ignoreUrls": true}],
     "no-restricted-syntax": 0,
     "no-plusplus": 0,
-    "no-underscore-dangle": [2, { "allow": ["_id", "__get__", "__set__"] }]
+    "no-underscore-dangle": [2, { "allow": ["_id", "__get__", "__set__"] }],
+    "import/no-extraneous-dependencies": 1
   }
 }
