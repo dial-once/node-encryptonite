@@ -1,4 +1,4 @@
-# node-encryption
+# node-encryptonite
 Module for aes-256-gcm encryption.
 
 ## features
@@ -7,7 +7,7 @@ Module for aes-256-gcm encryption.
 
 ## Installation
 ```
-npm install encryption
+npm install encryptonite
 ```
 
 ## How it works:
