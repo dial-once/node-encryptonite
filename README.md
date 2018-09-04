@@ -1,4 +1,5 @@
 # node-encryptonite
+
 [![Sonar](http://proxy.dialonce.net/sonar/api/badges/gate?key=node-encryptonite)](http://sonar.dialonce.net/dashboard?id=node-encryptonite)
 [![Sonar](http://proxy.dialonce.net/sonar/api/badges/measure?key=node-encryptonite&metric=ncloc)](http://sonar.dialonce.net/dashboard?id=node-encryptonite)
 [![Sonar](http://proxy.dialonce.net/sonar/api/badges/measure?key=node-encryptonite&metric=coverage)](http://sonar.dialonce.net/dashboard?id=node-encryptonite)

@@ -4,8 +4,10 @@
   "description": "Data encryption and decryption using aes-256-gcm algorithm",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha test",
-    "cover": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- test --recursive --timeout=10000"
+    "start": "node src/index.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "cover": "CONSOLE_LOGGING=false ./node_modules/.bin/nyc --reporter=lcov ./node_modules/.bin/_mocha test --recursive --timeout=10000 --exit",
+    "test": "npm run lint && npm run cover"
   },
   "repository": "https://github.com/dial-once/node-encryptonite",
   "keywords": [
@@ -16,13 +18,13 @@
   "author": "Dial-Once",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.2.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
   },
   "dependencies": {}
 }
