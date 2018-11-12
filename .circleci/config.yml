@@ -44,7 +44,7 @@ jobs:
 
       - run:
           name: Testing
-          command: make cover
+          command: make test
 
       - run:
           name: Sonar analysis
