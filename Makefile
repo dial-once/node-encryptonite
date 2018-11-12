@@ -13,7 +13,7 @@ cover:
 	npm run cover
 
 test:
-	npm run test
+	npm test
 
 sonar:
 	sed '/sonar.projectVersion/d' ./sonar-project.properties > tmp && mv tmp sonar-project.properties
